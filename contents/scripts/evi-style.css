@@ -55,7 +55,7 @@ header {
     margin-left: 17px;
     margin-top: inherit;
 }
-#BtnLimpLista{
+#BtnLimpLista,#fullscreen-toggle{
     color: white;
     margin: 0px 8px;
     text-decoration: none;

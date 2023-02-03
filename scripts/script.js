@@ -119,3 +119,14 @@ function limparLista(){
     montarLista();
     document.getElementById("itemLista").focus();
 } 
+
+const toggleButton = document.getElementById("fullscreen-toggle");
+
+toggleButton.addEventListener("click", function() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    document.documentElement.requestFullscreen();
+  }
+});
+
