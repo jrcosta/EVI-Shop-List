@@ -131,3 +131,6 @@ footer.fixar-rodape{
   #buttonSalvar{
     display: none;
   }
+  #setup_button {
+    display: none;
+}
