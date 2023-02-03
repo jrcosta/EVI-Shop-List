@@ -77,6 +77,7 @@ function montarLista() {
 
             if (produto.qtd === 0) {
                 lista.splice(index, 1);
+                localStorage.setItem("lista", JSON.stringify(lista));
                 montarLista();
             }
         });
