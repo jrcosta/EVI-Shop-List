@@ -3,18 +3,20 @@
 /* Primary resets */
 body {
     margin: 0px;
-}   
+}
 
 h1 {
     margin: 0px;
 }
+
 /*///////////////////////////////////*/
 div.head-main {
     position: absolute;
     height: 100px;
     width: 100%;
-    background-color: #00000081;  
+    background-color: #00000081;
 }
+
 header {
     display: table;
     height: 50px;
@@ -29,19 +31,22 @@ header {
     position: relative;
     z-index: 1;
 }
-.content-main {  
+
+.content-main {
     display: flex;
     top: 100px;
     height: 85%;
     background-color: #ffffff;
     position: relative;
-    padding: 75px 15px 15px 15px;  
+    padding: 75px 15px 15px 15px;
 }
-#add-list-bar{
+
+#add-list-bar {
     display: flex;
     width: 100%;
 }
-#buttonADC{
+
+#buttonADC {
     color: white;
     margin: 0px 8px;
     text-decoration: none;
@@ -55,7 +60,8 @@ header {
     margin-left: 17px;
     margin-top: inherit;
 }
-#BtnLimpLista{
+
+#BtnLimpLista {
     color: white;
     margin: 0px 8px;
     text-decoration: none;
@@ -70,40 +76,29 @@ header {
     margin-top: 17px;
     margin-bottom: 17px;
 }
-#setup_button{
-    color: white;
-    margin: 0px 8px;
-    text-decoration: none;
-    box-shadow: 3px 3px 0px #000000a6;
-    background-color: #00000081;
-    border: 1px;
-    height: 50px;
-    font-size: 15px;
-    font-weight: bold;
-    width: 75px;
-    margin-left: 17px;
-    margin-top: 17px;
-    margin-bottom: 17px;
+
+input[type=number] {
+    width: 20%;
 }
-input[type=number]{
-    width: 20%; 
-}
-input[type=text]
-{
+
+input[type=text] {
     width: 70%;
 }
+
 input:focus {
     box-shadow: 1 1 1 1;
     border: 1 none;
     outline: 0;
-} 
-.p_main{
+}
+
+.p_main {
     padding-top: 100px;
     padding-left: 25px;
     padding-right: 25px;
     font-family: 'Montserrat', sans-serif;
 }
-#exibeLista{
+
+#exibeLista {
     margin-top: 105px;
     width: 100%;
     border-collapse: collapse;
@@ -112,16 +107,19 @@ input:focus {
     font-family: Arial, Helvetica, sans-serif;
 
 }
-td{
+
+td {
     border: 1px solid rgb(187, 187, 187);
 }
+
 th {
     background-color: #00000081;
     color: white;
     padding: 5px;
     width: inherit;
 }
-button{
+
+button {
     color: white;
     margin: 0px 8px;
     text-decoration: none;
@@ -133,30 +131,33 @@ button{
     font-weight: bold;
     width: 20px;
 }
-footer.fixar-rodape{
+
+footer.fixar-rodape {
     /*border-top: 0.5px solid #00000083;*/
     bottom: 0;
     left: 0;
     height: 40px;
-    position:inherit;
+    position: inherit;
     width: 100%;
     text-align: center;
     padding-top: 10px;
-  }
-/*  #setup_button {
-    display: flexbox;
-}*/
-#hr-table{
+}
+
+#setup_button {
+    display: none;
+}
+
+#hr-table {
     margin-left: 0;
     margin-right: 0;
     width: 100%;
-    align-self:center;
+    align-self: center;
 }
 
-#hr-footer{
+#hr-footer {
     margin-top: 15px;
     margin-left: 15px;
     margin-right: 0;
     width: 100%;
-    align-self:center;
+    align-self: center;
 }
