@@ -4,10 +4,11 @@ class Produto {
         this.qtd = qtd;
     }
     }
-
+    
+let lista = JSON.parse(localStorage.getItem("lista")) || [];
 let inputNome = document.getElementById("itemLista");
 let inputQtd = document.getElementById("qtdProduto");
-let lista = [];
+//let lista = [];
 
 inputQtd.addEventListener("keyup", function (event) {
     event.preventDefault();
@@ -41,6 +42,7 @@ function adicionarProduto() {
     document.getElementById("qtdProduto").value = "";
     document.getElementById("itemLista").focus();
 
+    localStorage.setItem("lista", JSON.stringify(lista));
 
     montarLista();
 }
@@ -63,6 +65,7 @@ function montarLista() {
         botaoAdicionar.addEventListener("click", function () {
             produto.qtd++;
             colunaQtd.innerHTML = produto.qtd;
+            localStorage.setItem("lista", JSON.stringify(lista))
         });
 
         let botaoRemover = document.createElement("button");
@@ -70,6 +73,7 @@ function montarLista() {
         botaoRemover.addEventListener("click", function () {
             produto.qtd--;
             colunaQtd.innerHTML = produto.qtd;
+            localStorage.setItem("lista", JSON.stringify(lista))
 
             if (produto.qtd === 0) {
                 lista.splice(index, 1);
@@ -87,3 +91,7 @@ function montarLista() {
         tBody.appendChild(linha);
     });
 }
+
+window.onload = function () {
+    montarLista();
+};
