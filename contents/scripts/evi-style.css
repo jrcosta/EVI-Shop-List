@@ -93,7 +93,7 @@ th {
 button{
     color: white;
     margin: 0px 8px;
-    text-decoration: noone;
+    text-decoration: none;
     box-shadow: 2px 2px 0px #0DFF76;
     background-color: #0D80FF;
     border: 1px;
@@ -102,3 +102,13 @@ button{
     font-weight: bold;
     width: 20px;
 }
+footer.fixar-rodape{
+    border-top: 0.5px solid #333;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+  }
