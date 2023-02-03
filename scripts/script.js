@@ -94,5 +94,12 @@ function montarLista() {
 }
 
 window.onload = function () {
-    montarLista();
+    montarLista();   
 };
+
+function limparLista(){
+    localStorage.removeItem("lista");
+    lista = [];
+    montarLista();
+    document.getElementById("itemLista").focus();
+} 

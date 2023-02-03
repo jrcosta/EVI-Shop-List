@@ -53,6 +53,20 @@ header {
     font-weight: bold;
     width: 50px;
 }
+#BtnLimpLista{
+    color: white;
+    margin: 0px 8px;
+    text-decoration: none;
+    box-shadow: 3px 3px 0px #0DFF76;
+    background-color: #0D80FF;
+    border: 1px;
+    height: 50px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 75px;
+    margin-left: 17px;
+    margin-top: inherit;
+}
 input[type=number]{
     width: 20%; 
 }
