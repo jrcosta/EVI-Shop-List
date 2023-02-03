@@ -17,12 +17,25 @@ inputQtd.addEventListener("keyup", function (event) {
     }
 });
 
+inputNome.addEventListener("keyup", function (event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("buttonADC").click();
+    }
+});
+
+
 function adicionarProduto() {
     let nome = inputNome.value;
     let qtd = inputQtd.value;
 
-    if (!nome || !qtd) {
-        alert("Por favor, preencha todos os campos.");
+    if (!nome) {
+        alert("Por favor, preencha o nome do produto.");
+        inputNome.focus();
+        return;
+    } else if(!qtd){
+        alert("Por favor, preencha a quantidade do produto.");
+        inputQtd.focus();
         return;
     }
 
@@ -91,6 +104,9 @@ function montarLista() {
 
         tBody.appendChild(linha);
     });
+
+    document.querySelector("input[name='qtdProduto']").value = 1;
+
 }
 
 window.onload = function () {
