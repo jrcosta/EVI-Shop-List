@@ -170,5 +170,11 @@ window.addEventListener('appinstalled', (evt) => {
     console.log("appinstalled fired", evt);
 });
   
+var maxLength = 10;
+var field = $('#myinput');
+field.keydown( function(e)
+{
+    if ( $(this).val().length >= maxLength ) e.preventDefault();
+});
   
 
