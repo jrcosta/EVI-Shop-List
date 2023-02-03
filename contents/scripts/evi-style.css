@@ -112,3 +112,6 @@ footer.fixar-rodape{
     text-align: center;
     padding-top: 10px;
   }
+  #buttonSalvar{
+    display: none;
+  }
