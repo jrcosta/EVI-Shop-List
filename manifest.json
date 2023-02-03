@@ -1,6 +1,6 @@
 {
-    "short_name": "EVI Shop List",
-    "name": "Minha aplicação PWA de lista de compras",
+    "short_name": "Merc List",
+    "name": "Minha aplicação PWA de lista de compras.",
     "icons": [
         {
             "src": "/icon.png",

@@ -13,19 +13,19 @@ div.head-main {
     position: absolute;
     height: 100px;
     width: 100%;
-    background-color: #000000;  
+    background-color: #00000081;  
 }
 header {
     display: table;
     height: 50px;
     width: 60px;
-    background-color: #000000;
+    background-color: #00000081;
     color: #ffffff;
     font-family: 'Major Mono Display', Helvetica, monospace, 'Montserrat', sans-serif, 'Open Sans', sans-serif, 'Poppins', sans-serif;
     margin-left: 50px;
     margin-top: 45px;
     text-align: center;
-    box-shadow: 3px 3px 0px #00000083;
+    box-shadow: 3px 3px 0px #000000a6;
     position: relative;
     z-index: 1;
 }
@@ -45,8 +45,8 @@ header {
     color: white;
     margin: 0px 8px;
     text-decoration: none;
-    box-shadow: 3px 3px 0px #00000083;
-    background-color: #000000;
+    box-shadow: 3px 3px 0px #000000a6;
+    background-color: #00000081;
     border: 1px;
     height: 50px;
     font-size: 13px;
@@ -59,15 +59,30 @@ header {
     color: white;
     margin: 0px 8px;
     text-decoration: none;
-    box-shadow: 3px 3px 0px #00000083;
-    background-color: #000000;
+    box-shadow: 3px 3px 0px #000000a6;
+    background-color: #00000081;
     border: 1px;
     height: 50px;
     font-size: 15px;
     font-weight: bold;
     width: 75px;
     margin-left: 17px;
-    margin-top: inherit;
+    margin-top: 17px;
+    margin-bottom: 17px;
+}
+#setup_button{
+    color: white;
+    margin: 0px 8px;
+    text-decoration: none;
+    box-shadow: 3px 3px 0px #000000a6;
+    background-color: #00000081;
+    border: 1px;
+    height: 50px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 75px;
+    margin-left: 17px;
+    margin-top: 17px;
     margin-bottom: 17px;
 }
 input[type=number]{
@@ -101,7 +116,7 @@ td{
     border: 1px solid rgb(187, 187, 187);
 }
 th {
-    background-color: #000000;
+    background-color: #00000081;
     color: white;
     padding: 5px;
     width: inherit;
@@ -110,8 +125,8 @@ button{
     color: white;
     margin: 0px 8px;
     text-decoration: none;
-    box-shadow: 2px 2px 0px #00000083;
-    background-color: #000000;
+    box-shadow: 2px 2px 0px #000000a6;
+    background-color: #00000081;
     border: 1px;
     height: 25px;
     font-size: 15px;
@@ -119,7 +134,7 @@ button{
     width: 20px;
 }
 footer.fixar-rodape{
-    border-top: 0.5px solid #00000083;
+    /*border-top: 0.5px solid #00000083;*/
     bottom: 0;
     left: 0;
     height: 40px;
@@ -128,9 +143,20 @@ footer.fixar-rodape{
     text-align: center;
     padding-top: 10px;
   }
-  #buttonSalvar{
-    display: none;
-  }
-  #setup_button {
-    display: none;
+/*  #setup_button {
+    display: flexbox;
+}*/
+#hr-table{
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    align-self:center;
+}
+
+#hr-footer{
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 0;
+    width: 100%;
+    align-self:center;
 }
