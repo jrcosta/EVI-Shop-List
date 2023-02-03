@@ -24,7 +24,6 @@ inputNome.addEventListener("keyup", function (event) {
     }
 });
 
-
 function adicionarProduto() {
     let nome = inputNome.value;
     let qtd = inputQtd.value;
@@ -35,6 +34,10 @@ function adicionarProduto() {
         return;
     } else if(!qtd){
         alert("Por favor, preencha a quantidade do produto.");
+        inputQtd.focus();
+        return;
+    } else if (qtd.toString().length > 3) {
+        alert("Quantidade máxima permitida é 999.");
         inputQtd.focus();
         return;
     }
