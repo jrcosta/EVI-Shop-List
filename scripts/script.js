@@ -170,7 +170,7 @@ window.addEventListener('appinstalled', (evt) => {
     console.log("appinstalled fired", evt);
 });
   
-var maxLength = 15;
+var maxLength = 13;
 var field = $('#itemLista');
 field.keydown( function(e)
 {
