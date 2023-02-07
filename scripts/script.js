@@ -147,6 +147,20 @@ function montarLista() {
             novaLinha.appendChild(colunaDescricao);
             linha.after(novaLinha);
         });
+        
+        let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+
+        if (isMobile) {
+          botaoAdicionar.style.width = "100%";
+          botaoRemover.style.width = "100%";
+          botaoDeletar.style.width = "100%";
+        } else {
+          botaoAdicionar.style.width = "34px";
+          botaoRemover.style.width = "34px";
+          botaoDeletar.style.width = "35px";
+        }
+        
+        
     });
 
     document.querySelector("input[name='qtdProduto']").value = 1;
