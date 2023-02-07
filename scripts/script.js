@@ -29,15 +29,18 @@ function adicionarProduto() {
     let nome = inputNome.value;
     let qtd = inputQtd.value;
 
-    if (!nome) {
-        alert("Por favor, preencha o nome do produto.");
-        inputNome.focus();
-        return;
-    } else if (nome.trim().length === 0) {
-        alert("Deu né Rafa.");
+    if (!nome || nome.trim().length === 0) {
+        alert("Por favor, preencha o nome do produto.[P/R4F4Q@]");
         inputNome.value = "";
         inputNome.focus();
         return;
+    } else if (/^\d+$/.test(nome)) {
+        let confirmacao = window.confirm(`O nome ${nome} contém apenas números, deseja inserir dessa forma?`)
+        if(!confirmacao){
+            inputNome.value = "";
+            inputNome.focus();
+            return;
+        }
     } else if (!qtd || qtd <= 0) {
         alert("Por favor, preencha a quantidade do produto.");
         qtd = 1;
