@@ -1,5 +1,5 @@
 class Produto {
-    constructor(nome, qtd, valorPago=0) {
+    constructor(nome, qtd, valorPago = 0) {
         this.nome = nome;
         this.qtd = qtd;
         this.valorPago = valorPago;
@@ -111,15 +111,15 @@ function montarLista() {
         botaoDeletar.innerHTML = "DEL";
         botaoDeletar.style.display = "inline-block";
         botaoDeletar.style.verticalAlign = "top";
-        botaoDeletar.style.width = "35px";   
-        botaoDeletar.style.marginBottom = "3px";     
+        botaoDeletar.style.width = "35px";
+        botaoDeletar.style.marginBottom = "3px";
         botaoDeletar.style.fontSize = "12px";
         botaoDeletar.addEventListener("click", function () {
             lista.splice(index, 1);
             localStorage.setItem("lista", JSON.stringify(lista));
             montarLista();
         });
-        
+
         colunaBotoes.appendChild(botaoAdicionar);
         colunaBotoes.appendChild(botaoRemover);
         colunaBotoes.appendChild(botaoDeletar);
@@ -130,7 +130,7 @@ function montarLista() {
 
         tBody.appendChild(linha);
 
-        colunaNome.addEventListener("click", function() {
+        colunaNome.addEventListener("click", function () {
             let linhaInfo = linha.nextElementSibling;
             if (linhaInfo && linhaInfo.classList.contains("info-produto")) {
                 linhaInfo.remove();
@@ -151,16 +151,16 @@ function montarLista() {
         let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 
         if (isMobile) {
-          botaoAdicionar.style.width = "45%";
-          botaoRemover.style.width = "45%";
-          botaoDeletar.style.width = "45%";
+            botaoAdicionar.style.width = "45%";
+            botaoRemover.style.width = "45%";
+            botaoDeletar.style.width = "45%";
         } else {
-          botaoAdicionar.style.width = "34px";
-          botaoRemover.style.width = "34px";
-          botaoDeletar.style.width = "34px";
+            botaoAdicionar.style.width = "34px";
+            botaoRemover.style.width = "34px";
+            botaoDeletar.style.width = "34px";
         }
-        
-        
+
+
     });
 
     document.querySelector("input[name='qtdProduto']").value = 1;
@@ -188,33 +188,34 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-let deferredPrompt; // Allows to show the install prompt
+let deferredPrompt;
 let setupButton;
 
 window.addEventListener('beforeinstallprompt', (e) => {
-    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    // Prevenir que o Chrome 67 e anteriores mostrem automaticamente o prompt
     e.preventDefault();
-    // Stash the event so it can be triggered later.
+    // Armazenar o evento para que possa ser disparado posteriormente.
     deferredPrompt = e;
     console.log("beforeinstallprompt fired");
-    if (setupButton == undefined) {
-        setupButton = document.getElementById("setup_button");
+    setupButton = document.getElementById("setup_button");
+    if (setupButton) {
+        // Mostrar o botão de configuração
+        setupButton.style.display = "inline";
+        setupButton.disabled = false;
+        setupButton.addEventListener('click', installApp);
     }
-    // Show the setup button
-    setupButton.style.display = "inline";
-    setupButton.disabled = false;
 });
 
 function installApp() {
-    // Show the prompt
+    // Mostrar o prompt
     deferredPrompt.prompt();
     setupButton.disabled = true;
-    // Wait for the user to respond to the prompt
+    // Aguardar a resposta do usuário ao prompt
     deferredPrompt.userChoice
         .then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
                 console.log('PWA setup accepted');
-                // hide our user interface that shows our A2HS button
+                // Ocultar a interface do usuário que mostra nosso botão A2HS
                 setupButton.style.display = 'none';
             } else {
                 console.log('PWA setup rejected');
@@ -222,6 +223,10 @@ function installApp() {
             deferredPrompt = null;
         });
 }
+
+window.addEventListener('appinstalled', (evt) => {
+    console.log("appinstalled fired", evt);
+});
 
 
 window.addEventListener('appinstalled', (evt) => {
