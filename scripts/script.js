@@ -33,8 +33,15 @@ function adicionarProduto() {
         alert("Por favor, preencha o nome do produto.");
         inputNome.focus();
         return;
-    } else if (!qtd) {
+    } else if (nome.trim().length === 0) {
+        alert("Deu né Rafa.");
+        inputNome.value = "";
+        inputNome.focus();
+        return;
+    } else if (!qtd || qtd <= 0) {
         alert("Por favor, preencha a quantidade do produto.");
+        qtd = 1;
+        inputQtd.value = qtd;
         inputQtd.focus();
         return;
     } else if (qtd.toString().length > 3) {
