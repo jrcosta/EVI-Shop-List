@@ -1,5 +1,6 @@
 class Produto {
     constructor(nome, qtd, valorPago = 0) {
+        this.id = uuid.v4();
         this.nome = nome;
         this.qtd = qtd;
         this.valorPago = valorPago;
@@ -36,7 +37,7 @@ function adicionarProduto() {
         return;
     } else if (/^\d+$/.test(nome)) {
         let confirmacao = window.confirm(`O nome ${nome} contém apenas números, deseja inserir dessa forma?`)
-        if(!confirmacao){
+        if (!confirmacao) {
             inputNome.value = "";
             inputNome.focus();
             return;
@@ -151,12 +152,34 @@ function montarLista() {
             novaLinha.classList.add("info-produto");
 
             let colunaDescricao = document.createElement("td");
-            colunaDescricao.colSpan = 3;
-            colunaDescricao.innerHTML = produto.descricao;
+            colunaDescricao.innerHTML = "Valor Pago";
+
+            let colunaValor = document.createElement("td");
+            colunaValor.colSpan = 2;
+            let inputValor = document.createElement("input");
+            inputValor.type = "text";
+            inputValor.value = produto.valorPago || "";
+            colunaValor.appendChild(inputValor);
 
             novaLinha.appendChild(colunaDescricao);
+            novaLinha.appendChild(colunaValor);
             linha.after(novaLinha);
+
+            inputValor.addEventListener("blur", function () {
+                produto.valorPago = inputValor.value;
+                localStorage.setItem("produto_" + produto.id, JSON.stringify(produto));
+            });
         });
+
+        window.addEventListener("load", function () {
+            let produtoSalvo = localStorage.getItem("produto_" + produto.id);
+            if (produtoSalvo) {
+                produto = JSON.parse(produtoSalvo);
+            }
+        });
+
+
+
 
         let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 
