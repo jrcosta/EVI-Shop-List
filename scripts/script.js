@@ -147,17 +147,17 @@ function montarLista() {
             novaLinha.appendChild(colunaDescricao);
             linha.after(novaLinha);
         });
-        
+
         let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 
         if (isMobile) {
-          botaoAdicionar.style.width = "100%";
-          botaoRemover.style.width = "100%";
-          botaoDeletar.style.width = "100%";
+          botaoAdicionar.style.width = "50%";
+          botaoRemover.style.width = "50%";
+          botaoDeletar.style.width = "50%";
         } else {
-          botaoAdicionar.style.width = "34px";
-          botaoRemover.style.width = "34px";
-          botaoDeletar.style.width = "35px";
+          botaoAdicionar.style.width = "70px";
+          botaoRemover.style.width = "70px";
+          botaoDeletar.style.width = "70px";
         }
         
         
