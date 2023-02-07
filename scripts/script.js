@@ -173,14 +173,14 @@ window.addEventListener('appinstalled', (evt) => {
     console.log("appinstalled fired", evt);
 });
   
-var maxLength = 13;
+var maxLength = 15;
 var field = $('#itemLista');
 field.keydown( function(e)
 {
     if ( $(this).val().length >= maxLength ) e.preventDefault();
 });
 
-var maxLength = 13;
+var maxLength = 15;
 var field = $('#qtdProduto');
 field.keydown( function(e)
 {
