@@ -1,10 +1,11 @@
 class Produto {
-    constructor(nome, qtd) {
+    constructor(nome, qtd, valorPago=0) {
         this.nome = nome;
         this.qtd = qtd;
+        this.valorPago = valorPago;
     }
-    }
-    
+}
+
 let lista = JSON.parse(localStorage.getItem("lista")) || [];
 let inputNome = document.getElementById("itemLista");
 let inputQtd = document.getElementById("qtdProduto");
@@ -32,12 +33,14 @@ function adicionarProduto() {
         alert("Por favor, preencha o nome do produto.");
         inputNome.focus();
         return;
-    } else if(!qtd){
+    } else if (!qtd) {
         alert("Por favor, preencha a quantidade do produto.");
         inputQtd.focus();
         return;
     } else if (qtd.toString().length > 3) {
         alert("Quantidade máxima permitida é 999.");
+        qtd = 1;
+        inputQtd.value = qtd;
         inputQtd.focus();
         return;
     }
@@ -78,6 +81,9 @@ function montarLista() {
 
         let botaoAdicionar = document.createElement("button");
         botaoAdicionar.innerHTML = "+";
+        botaoAdicionar.style.width = "34px";
+        botaoAdicionar.style.display = "inline-block";
+        botaoAdicionar.style.verticalAlign = "top";
         botaoAdicionar.addEventListener("click", function () {
             produto.qtd++;
             colunaQtd.innerHTML = produto.qtd;
@@ -86,6 +92,9 @@ function montarLista() {
 
         let botaoRemover = document.createElement("button");
         botaoRemover.innerHTML = "-";
+        botaoRemover.style.width = "34px";
+        botaoRemover.style.display = "inline-block";
+        botaoRemover.style.verticalAlign = "top";
         botaoRemover.addEventListener("click", function () {
             produto.qtd--;
             colunaQtd.innerHTML = produto.qtd;
@@ -98,14 +107,46 @@ function montarLista() {
             }
         });
 
+        let botaoDeletar = document.createElement("button");
+        botaoDeletar.innerHTML = "DEL";
+        botaoDeletar.style.display = "inline-block";
+        botaoDeletar.style.verticalAlign = "top";
+        botaoDeletar.style.width = "35px";   
+        botaoDeletar.style.marginBottom = "3px";     
+        botaoDeletar.style.fontSize = "12px";
+        botaoDeletar.addEventListener("click", function () {
+            lista.splice(index, 1);
+            localStorage.setItem("lista", JSON.stringify(lista));
+            montarLista();
+        });
+        
         colunaBotoes.appendChild(botaoAdicionar);
         colunaBotoes.appendChild(botaoRemover);
+        colunaBotoes.appendChild(botaoDeletar);
 
         linha.appendChild(colunaNome);
         linha.appendChild(colunaQtd);
         linha.appendChild(colunaBotoes);
 
         tBody.appendChild(linha);
+
+        colunaNome.addEventListener("click", function() {
+            let linhaInfo = linha.nextElementSibling;
+            if (linhaInfo && linhaInfo.classList.contains("info-produto")) {
+                linhaInfo.remove();
+                return;
+            }
+
+            let novaLinha = document.createElement("tr");
+            novaLinha.classList.add("info-produto");
+
+            let colunaDescricao = document.createElement("td");
+            colunaDescricao.colSpan = 3;
+            colunaDescricao.innerHTML = produto.descricao;
+
+            novaLinha.appendChild(colunaDescricao);
+            linha.after(novaLinha);
+        });
     });
 
     document.querySelector("input[name='qtdProduto']").value = 1;
@@ -113,21 +154,21 @@ function montarLista() {
 }
 
 window.onload = function () {
-    montarLista();   
+    montarLista();
 };
 
-function limparLista(){
+function limparLista() {
     localStorage.removeItem("lista");
     lista = [];
     montarLista();
     document.getElementById("itemLista").focus();
-} 
+}
 
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('scripts/sw.js').then(function(registration) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('scripts/sw.js').then(function (registration) {
             console.log('Service Worker registrado com sucesso: ', registration.scope);
-        }, function(err) {
+        }, function (err) {
             console.log('Service Worker falhou ao ser registrado: ', err);
         });
     });
@@ -172,12 +213,11 @@ function installApp() {
 window.addEventListener('appinstalled', (evt) => {
     console.log("appinstalled fired", evt);
 });
-  
+
 var maxLength = 17;
 var field = $('#itemLista');
-field.keydown( function(e)
-{
-    if ( $(this).val().length >= maxLength ) e.preventDefault();
+field.keydown(function (e) {
+    if ($(this).val().length >= maxLength) e.preventDefault();
 });
 
 /*var maxLength = 15;
