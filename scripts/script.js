@@ -158,7 +158,13 @@ function montarLista() {
             colunaValor.colSpan = 2;
             let inputValor = document.createElement("input");
             inputValor.type = "text";
-            inputValor.value = produto.valorPago || "";
+
+            let produtoStorage = JSON.parse(localStorage.getItem("produto_" + produto.id));
+            let valorFormatado = new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            }).format(produtoStorage ? produtoStorage.valorPago : 0);
+            inputValor.value = valorFormatado;
             colunaValor.appendChild(inputValor);
 
             novaLinha.appendChild(colunaDescricao);
@@ -177,6 +183,7 @@ function montarLista() {
                 produto = JSON.parse(produtoSalvo);
             }
         });
+
 
 
 
