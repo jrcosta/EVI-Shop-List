@@ -87,6 +87,20 @@ function montarLista() {
         let colunaQtd = document.createElement("td");
         let colunaBotoes = document.createElement("td");
 
+        colunaNome.style.position = "relative";
+        colunaNome.style.paddingBottom = "5px";
+
+        let spanInfo = document.createElement("span");
+        spanInfo.innerHTML = "+info";
+        spanInfo.style.fontSize = "10px";
+        spanInfo.style.position = "absolute";
+        spanInfo.style.right = "0";
+        spanInfo.style.bottom = "0";
+        spanInfo.style.color = "darkgreen";
+        
+        
+        
+
         colunaNome.innerHTML = produto.nome.toUpperCase();
         colunaQtd.innerHTML = produto.qtd;
 
@@ -138,6 +152,7 @@ function montarLista() {
         linha.appendChild(colunaNome);
         linha.appendChild(colunaQtd);
         linha.appendChild(colunaBotoes);
+        colunaNome.appendChild(spanInfo);
 
         tBody.appendChild(linha);
 
@@ -152,6 +167,7 @@ function montarLista() {
             novaLinha.classList.add("info-produto");
 
             let colunaDescricao = document.createElement("td");
+            colunaDescricao.style.fontSize = "12px"
             colunaDescricao.innerHTML = "Valor Pago";
 
             let colunaValor = document.createElement("td");
@@ -166,6 +182,7 @@ function montarLista() {
             }).format(produtoStorage ? produtoStorage.valorPago : 0);
             inputValor.value = valorFormatado;
             colunaValor.appendChild(inputValor);
+            
 
             novaLinha.appendChild(colunaDescricao);
             novaLinha.appendChild(colunaValor);
@@ -175,6 +192,29 @@ function montarLista() {
                 produto.valorPago = inputValor.value;
                 localStorage.setItem("produto_" + produto.id, JSON.stringify(produto));
             });
+
+            inputValor.addEventListener("click", function () {
+                inputValor.select();
+            });
+
+            document.addEventListener("click", function (event) {
+                if (event.target !== inputValor && event.target !== colunaNome) {
+                    let linhaInfo = linha.nextElementSibling;
+                    if (linhaInfo && linhaInfo.classList.contains("info-produto")) {
+                        linhaInfo.remove();
+                    }
+                }
+            });
+            inputValor.addEventListener("keydown", function (event) {
+                if (event.key === "Tab") {
+                    let linhaInfo = linha.nextElementSibling;
+                    if (linhaInfo && linhaInfo.classList.contains("info-produto")) {
+                        linhaInfo.remove();
+                    }
+                }
+            });
+        
+            
         });
 
         window.addEventListener("load", function () {
@@ -183,10 +223,8 @@ function montarLista() {
                 produto = JSON.parse(produtoSalvo);
             }
         });
-
-
-
-
+        
+        
 
         let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 
