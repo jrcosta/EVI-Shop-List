@@ -189,32 +189,22 @@ function montarLista() {
             linha.after(novaLinha);
 
             inputValor.addEventListener("blur", function () {
-                produto.valorPago = inputValor.value;
+                let valorInserido = inputValor.value;
+                if (isNaN(valorInserido)) {
+                    alert("Por favor, insira um valor válido.");
+                    produto.valorPago = 0;
+                } else {
+                    produto.valorPago = valorInserido;
+                }
                 localStorage.setItem("produto_" + produto.id, JSON.stringify(produto));
+                atualizarTotal();
             });
+            
 
             inputValor.addEventListener("click", function () {
                 inputValor.select();
             });
-
-            document.addEventListener("click", function (event) {
-                if (event.target !== inputValor && event.target !== colunaNome) {
-                    let linhaInfo = linha.nextElementSibling;
-                    if (linhaInfo && linhaInfo.classList.contains("info-produto")) {
-                        linhaInfo.remove();
-                    }
-                }
-            });
-            inputValor.addEventListener("keydown", function (event) {
-                if (event.key === "Tab") {
-                    let linhaInfo = linha.nextElementSibling;
-                    if (linhaInfo && linhaInfo.classList.contains("info-produto")) {
-                        linhaInfo.remove();
-                    }
-                }
-            });
-        
-            
+           
         });
 
         window.addEventListener("load", function () {
@@ -222,9 +212,28 @@ function montarLista() {
             if (produtoSalvo) {
                 produto = JSON.parse(produtoSalvo);
             }
+
+            atualizarTotal();
         });
         
-        
+        function atualizarTotal() {
+            let total = 0;
+          
+            for (let i = 0; i < localStorage.length; i++) {
+              let chave = localStorage.key(i);
+              if (chave.startsWith("produto_")) {
+                let produto = JSON.parse(localStorage.getItem(chave));
+                total += produto.valorPago;
+              }
+            }
+          
+            let elementoTotal = document.querySelector("#total");
+            elementoTotal.innerHTML = new Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL"
+            }).format(total);
+          }
+          
 
         let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 
