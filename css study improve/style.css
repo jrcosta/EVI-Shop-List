@@ -21,7 +21,7 @@ h1{margin:0px;padding:0px;}
     align-items: flex-end;
     /* justificar conteudo, cima(start) baixo(end) baseline(com base no conteudo interno */ /* <<< ou alinhado verticalmente */
     align-content: flex-end;
-    /* semelhane ao align ou justify com a diferença de alinhar os itens de forma agrupada */
+    /* semelhante ao align ou justify com a diferença de alinhar os itens de forma agrupada */
  
 
 }
