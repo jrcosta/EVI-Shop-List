@@ -189,14 +189,24 @@ function montarLista() {
             linha.after(novaLinha);
 
             inputValor.addEventListener("blur", function () {
-                let valorInserido = inputValor.value;
-                if (isNaN(valorInserido)) {
+                let valorInserido = inputValor.value
+                    .replace(/[^0-9,.-]/g, "")
+                    .replace(/\./g, "")
+                    .replace(",", ".");
+
+                const valorNumerico = parseFloat(valorInserido);
+
+                if (isNaN(valorNumerico)) {
                     alert("Por favor, insira um valor válido.");
                     produto.valorPago = 0;
                 } else {
-                    produto.valorPago = valorInserido;
+                    produto.valorPago = valorNumerico;
                 }
-                localStorage.setItem("produto_" + produto.id, JSON.stringify(produto));
+
+                localStorage.setItem(
+                    "produto_" + produto.id,
+                    JSON.stringify(produto)
+                );
                 atualizarTotal();
             });
             
@@ -223,7 +233,7 @@ function montarLista() {
               let chave = localStorage.key(i);
               if (chave.startsWith("produto_")) {
                 let produto = JSON.parse(localStorage.getItem(chave));
-                total += produto.valorPago;
+                total += parseFloat(produto.valorPago) || 0;
               }
             }
           
