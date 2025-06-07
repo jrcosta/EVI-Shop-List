@@ -1,7 +1,8 @@
 # Shop list EVI
  Estudos relacionados a criação de listas,
- Hello world!
- 
- Shop List EVI template: mauriciodc.github.io
+
+[Shop List EVI template](https://mauriciodc.github.io)
+
+Para executar o projeto localmente, abra o arquivo `index.html` em seu navegador.
 
 
