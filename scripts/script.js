@@ -7,24 +7,34 @@ class Produto {
     }
 }
 
-let lista = JSON.parse(localStorage.getItem("lista")) || [];
-let inputNome = document.getElementById("itemLista");
-let inputQtd = document.getElementById("qtdProduto");
+let lista = JSON.parse(typeof localStorage !== 'undefined' ? localStorage.getItem("lista") : null) || [];
+let inputNome;
+let inputQtd;
 //let lista = [];
 
-inputQtd.addEventListener("keyup", function (event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        document.getElementById("buttonADC").click();
-    }
-});
+if (typeof document !== 'undefined') {
+    inputNome = document.getElementById("itemLista");
+    inputQtd = document.getElementById("qtdProduto");
 
-inputNome.addEventListener("keyup", function (event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        document.getElementById("buttonADC").click();
-    }
-});
+    inputQtd.addEventListener("keyup", function (event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById("buttonADC").click();
+        }
+    });
+
+    inputNome.addEventListener("keyup", function (event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById("buttonADC").click();
+        }
+    });
+}
+
+function setInputs(nomeElement, qtdElement) {
+    inputNome = nomeElement;
+    inputQtd = qtdElement;
+}
 
 function adicionarProduto() {
     let nome = inputNome.value;
@@ -254,9 +264,11 @@ function montarLista() {
 
 }
 
-window.onload = function () {
-    montarLista();
-};
+if (typeof window !== 'undefined') {
+    window.onload = function () {
+        montarLista();
+    };
+}
 
 function limparLista() {
     localStorage.removeItem("lista");
@@ -265,7 +277,7 @@ function limparLista() {
     document.getElementById("itemLista").focus();
 }
 
-if ('serviceWorker' in navigator) {
+if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator && typeof window !== 'undefined') {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('scripts/sw.js').then(function (registration) {
             console.log('Service Worker registrado com sucesso: ', registration.scope);
@@ -278,20 +290,22 @@ if ('serviceWorker' in navigator) {
 let deferredPrompt;
 let setupButton;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    // Prevenir que o Chrome 67 e anteriores mostrem automaticamente o prompt
-    e.preventDefault();
-    // Armazenar o evento para que possa ser disparado posteriormente.
-    deferredPrompt = e;
-    console.log("beforeinstallprompt fired");
-    setupButton = document.getElementById("setup_button");
-    if (setupButton) {
-        // Mostrar o botão de configuração
-        setupButton.style.display = "inline";
-        setupButton.disabled = false;
-        setupButton.addEventListener('click', installApp);
-    }
-});
+if (typeof window !== 'undefined') {
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevenir que o Chrome 67 e anteriores mostrem automaticamente o prompt
+        e.preventDefault();
+        // Armazenar o evento para que possa ser disparado posteriormente.
+        deferredPrompt = e;
+        console.log("beforeinstallprompt fired");
+        setupButton = document.getElementById("setup_button");
+        if (setupButton) {
+            // Mostrar o botão de configuração
+            setupButton.style.display = "inline";
+            setupButton.disabled = false;
+            setupButton.addEventListener('click', installApp);
+        }
+    });
+}
 
 function installApp() {
     // Mostrar o prompt
@@ -311,20 +325,23 @@ function installApp() {
         });
 }
 
-window.addEventListener('appinstalled', (evt) => {
-    console.log("appinstalled fired", evt);
-});
+if (typeof window !== 'undefined') {
+    window.addEventListener('appinstalled', (evt) => {
+        console.log("appinstalled fired", evt);
+    });
 
+    window.addEventListener('appinstalled', (evt) => {
+        console.log("appinstalled fired", evt);
+    });
+}
 
-window.addEventListener('appinstalled', (evt) => {
-    console.log("appinstalled fired", evt);
-});
-
-var maxLength = 17;
-var field = $('#itemLista');
-field.keydown(function (e) {
-    if ($(this).val().length >= maxLength) e.preventDefault();
-});
+if (typeof $ !== 'undefined') {
+    var maxLength = 17;
+    var field = $('#itemLista');
+    field.keydown(function (e) {
+        if ($(this).val().length >= maxLength) e.preventDefault();
+    });
+}
 
 /*var maxLength = 15;
 var field = $('#qtdProduto');
@@ -332,4 +349,8 @@ field.keydown( function(e)
 {
     if ( $(this).val().length >= maxLength ) e.preventDefault();
 });*/
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { adicionarProduto, lista, setInputs };
+}
 
