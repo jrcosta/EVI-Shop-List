@@ -4,7 +4,7 @@
   "description": "Estudos relacionados a criação de listas,\r  Hello world!",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "npx jasmine"
   },
   "repository": {
     "type": "git",

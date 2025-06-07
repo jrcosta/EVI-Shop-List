@@ -361,6 +361,6 @@ field.keydown( function(e)
 });*/
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { adicionarProduto, lista, setInputs };
+    module.exports = { Produto, adicionarProduto, lista, setInputs };
 }
 
