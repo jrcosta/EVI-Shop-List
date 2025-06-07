@@ -2,88 +2,86 @@
 
 /* Primary resets */
 body {
-    margin: 0px;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 h1 {
-    margin: 0px;
+    margin: 0;
 }
 
 /*///////////////////////////////////*/
-div.head-main {
-    position: absolute;
-    height: 100px;
-    width: 100%;
+header.head-main {
     background-color: #00000081;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 10px 0;
 }
 
 header {
-    display: table;
-    height: 50px;
-    width: 60px;
-    background-color: #00000081;
+    text-align: center;
     color: #ffffff;
     font-family: 'Major Mono Display', Helvetica, monospace, 'Montserrat', sans-serif, 'Open Sans', sans-serif, 'Poppins', sans-serif;
-    margin-left: 50px;
-    margin-top: 45px;
-    text-align: center;
-    box-shadow: 3px 3px 0px #000000a6;
-    position: relative;
-    z-index: 1;
 }
 
 .content-main {
     display: flex;
-    top: 100px;
-    height: 85%;
+    flex-direction: column;
     background-color: #ffffff;
-    position: relative;
-    padding: 75px 15px 15px 15px;
+    padding: 20px 15px;
 }
 
 #add-list-bar {
     display: flex;
+    align-items: center;
+    gap: 10px;
     width: 100%;
 }
 
 #buttonADC {
     color: white;
-    margin: 0px 8px;
+    margin: 0 8px;
     text-decoration: none;
     box-shadow: 3px 3px 0px #000000a6;
     background-color: #00000081;
-    border: 1px;
-    height: 50px;
+    border: none;
+    padding: 8px 12px;
     font-size: 13px;
     font-weight: bold;
-    width: 75px;
-    margin-left: 17px;
-    margin-top: inherit;
+    cursor: pointer;
 }
 
 #BtnLimpLista {
     color: white;
-    margin: 0px 8px;
+    margin: 0 8px;
     text-decoration: none;
     box-shadow: 3px 3px 0px #000000a6;
     background-color: #00000081;
-    border: 1px;
-    height: 50px;
+    border: none;
+    padding: 8px 12px;
     font-size: 15px;
     font-weight: bold;
-    width: 75px;
-    margin-left: 17px;
+    cursor: pointer;
     margin-top: 17px;
     margin-bottom: 17px;
 }
 
+input[type=number],
+input[type=text] {
+    padding: 8px;
+    font-size: 1rem;
+}
+
 input[type=number] {
     width: 10%;
+    max-width: 80px;
 }
 
 input[type=text] {
     width: 70%;
     margin-right: 5px;
+    flex: 1;
 }
 
 input:focus {
@@ -104,7 +102,7 @@ input:focus {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
-    margin-left: 15px;
+    margin-left: 0;
     font-family: Arial, Helvetica, sans-serif;
 
 }
@@ -157,8 +155,32 @@ footer.fixar-rodape {
 
 #hr-footer {
     margin-top: 2px;
-    margin-left: 15px;
+    margin-left: 0;
     margin-right: 0;
     width: 100%;
     align-self: center;
+}
+
+@media (max-width: 600px) {
+    #add-list-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #buttonADC,
+    #BtnLimpLista {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        max-width: none;
+        margin-right: 0;
+    }
+
+    table {
+        font-size: 14px;
+    }
 }
